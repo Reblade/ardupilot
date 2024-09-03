@@ -1079,7 +1079,8 @@ private:
         DoNotStabilizePositionXY = (1U << 4),
         DoNotStabilizeVelocityXY = (1U << 5),
         WPNavUsedForPosControl = (1U << 6),
-        AllowWeatherVaning = (1U << 7)
+        AllowWeatherVaning = (1U << 7),
+        StabilizeAngRateOnly = (1U << 8)
     };
 
     // wp controller

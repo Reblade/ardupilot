@@ -962,7 +962,14 @@ void ModeGuided::angle_control_run()
 
     // call attitude controller
     if (guided_angle_state.attitude_quat.is_zero()) {
-        attitude_control->input_rate_bf_roll_pitch_yaw(ToDeg(guided_angle_state.ang_vel.x) * 100.0f, ToDeg(guided_angle_state.ang_vel.y) * 100.0f, ToDeg(guided_angle_state.ang_vel.z) * 100.0f);
+        bool do_angle_control = (copter.g2.guided_options.get() & uint32_t(Options::StabilizeAngRateOnly)) == 0;
+        // Invoke API with normal implicit attitude control.
+        if (do_angle_control) {
+            attitude_control->input_rate_bf_roll_pitch_yaw(ToDeg(guided_angle_state.ang_vel.x) * 100.0f, ToDeg(guided_angle_state.ang_vel.y) * 100.0f, ToDeg(guided_angle_state.ang_vel.z) * 100.0f);
+        // Invoke variant that does not call the attitude stabilization method.
+        } else {
+            attitude_control->input_rate_bf_roll_pitch_yaw_2(ToDeg(guided_angle_state.ang_vel.x) * 100.0f, ToDeg(guided_angle_state.ang_vel.y) * 100.0f, ToDeg(guided_angle_state.ang_vel.z) * 100.0f);
+        }
     } else {
         attitude_control->input_quaternion(guided_angle_state.attitude_quat, guided_angle_state.ang_vel);
     }
