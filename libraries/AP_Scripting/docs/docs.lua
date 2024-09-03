@@ -2625,6 +2625,13 @@ AC_AttitudeControl = {}
 ---@return number -- yaw slew rate
 function AC_AttitudeControl:get_rpy_srate() end
 
+
+-- pass angular rate commands to the rate controller, variant 2
+---@param roll_rate_cds number
+---@param pitch_rate_cds number
+---@param yaw_rate_cds number
+function AC_AttitudeControl:input_rate_bf_roll_pitch_yaw_2(roll_rate_cds, pitch_rate_cds, yaw_rate_cds) end
+
 -- desc
 ---@class AR_AttitudeControl
 AR_AttitudeControl = {}
