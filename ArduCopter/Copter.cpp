@@ -393,7 +393,7 @@ void Copter::set_target_throttle_rate_rpy(float throttle_pct, float roll_rate_dp
     q.zero();
     const Vector3f ang_vel_target(radians(roll_rate_dps), radians(pitch_rate_dps), radians(yaw_rate_dps));
 
-    mode_guided.set_angle(q, ang_vel_target, throttle_pct, true);
+    mode_guided.set_angle(q, ang_vel_target, throttle_pct*0.01f, true);
     return;
 }
 #endif
