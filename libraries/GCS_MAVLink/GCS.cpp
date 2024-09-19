@@ -123,6 +123,18 @@ bool GCS::get_high_latency_status()
 }
 #endif // HAL_HIGH_LATENCY2_ENABLED
 
+void GCS::send_arm_disarm(const uint8_t compid, const float arm_value)
+{
+    mavlink_command_long_t packet {};
+    packet.target_system = sysid_this_mav();
+    packet.target_component = compid;
+    packet.command = MAVLINK_MSG_ID_COMMAND_LONG;
+    packet.param1 = arm_value;
+
+    gcs().send_to_active_channels(MAVLINK_MSG_ID_COMMAND_LONG,
+                                  (const char *)&packet);
+}
+
 /*
   install an alternative protocol handler. This allows another
   protocol to take over the link if MAVLink goes idle. It is used to

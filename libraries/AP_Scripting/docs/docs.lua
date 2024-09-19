@@ -1984,10 +1984,19 @@ function onvif:start(username, password, httphostname) end
 ---@class gcs
 gcs = {}
 
--- send named float value using NAMED_VALUE_FLOAT message
----@param name string -- up to 10 chars long
----@param value number -- value to send
-function gcs:send_named_float(name, value) end
+
+-- Send a MAV_CMD_COMPONENT_ARM_DISARM to the component with compid and argument arming_state
+---@param compid integer
+---@param arming_state number
+function gcs:send_arm_disarm(compid, arming_state) end
+
+-- Return the last known MAV_STATE of the BAS attachment.
+---@return integer
+function gcs:get_bas_status() end
+
+-- Set the MAVLink component ID of the BAS attachment.
+---@param compid integer
+function gcs:set_bas_compid(compid) end
 
 -- set message interval for a given serial port and message id
 ---@param port_num integer -- serial port number

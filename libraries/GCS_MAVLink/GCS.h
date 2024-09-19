@@ -1127,6 +1127,18 @@ public:
     void sysid_myggcs_seen(uint32_t seen_time_ms) {
         _sysid_mygcs_last_seen_time_ms = seen_time_ms;
     }
+    void set_bas_compid(const uint8_t compid) {
+        _bas_compid = compid;
+    }
+    uint8_t get_bas_compid() {
+        return _bas_compid;
+    }
+    void set_bas_status(const uint8_t status) {
+        _bas_status = status;
+    }
+    uint8_t get_bas_status() {
+        return _bas_status;
+    }
 
     void send_to_active_channels(uint32_t msgid, const char *pkt);
 
@@ -1220,6 +1232,7 @@ public:
     void enable_high_latency_connections(bool enabled);
     bool get_high_latency_status();
 #endif // HAL_HIGH_LATENCY2_ENABLED
+    void send_arm_disarm(const uint8_t compid, const float arm_value);
 
     virtual uint8_t sysid_this_mav() const = 0;
 
@@ -1255,6 +1268,10 @@ private:
 
     // time we last saw traffic from our GCS
     uint32_t _sysid_mygcs_last_seen_time_ms;
+
+    // Component status of our bas
+    uint8_t _bas_compid;
+    uint8_t _bas_status;
 
     void service_statustext(void);
 #if HAL_MEM_CLASS <= HAL_MEM_CLASS_192 || CONFIG_HAL_BOARD == HAL_BOARD_SITL
