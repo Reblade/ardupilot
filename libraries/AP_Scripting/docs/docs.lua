@@ -1985,9 +1985,9 @@ function onvif:start(username, password, httphostname) end
 gcs = {}
 
 
--- Send a MAV_CMD_COMPONENT_ARM_DISARM to the component with compid and argument arming_state
----@param compid integer
----@param arming_state number
+-- Send a MAV_CMD_COMPONENT_ARM_DISARM.
+---@param compid integer -- Component ID to send the command to.
+---@param arming_state number -- Requested arming state.
 function gcs:send_arm_disarm(compid, arming_state) end
 
 -- Return the last known MAV_STATE of the BAS attachment.
