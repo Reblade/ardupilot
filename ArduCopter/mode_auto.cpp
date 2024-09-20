@@ -1266,7 +1266,6 @@ void ModeAuto::payload_place_run()
                 if(g2.winch.ground_sense()==1)
                     {
                     nav_payload_place.state = PayloadPlaceStateType_Release;
-                    FALLTHROUGH;
                     }
                     else
                     {
