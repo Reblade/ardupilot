@@ -1985,12 +1985,11 @@ function onvif:start(username, password, httphostname) end
 gcs = {}
 
 
--- Send a MAV_CMD_COMPONENT_ARM_DISARM.
----@param compid integer -- Component ID to send the command to.
----@param arming_state number -- Requested arming state.
-function gcs:send_arm_disarm(compid, arming_state) end
+-- Get the last time since boot when the a heartbeat from BAS was received, in ms.
+---@return uint32_t_ud
+function gcs:get_bas_last_updated() end
 
--- Return the last known MAV_STATE of the BAS attachment.
+-- desc
 ---@return integer
 function gcs:get_bas_status() end
 

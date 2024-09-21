@@ -3774,7 +3774,7 @@ void GCS_MAVLINK::handle_heartbeat(const mavlink_message_t &msg) const
         if (msg.compid == gcs().get_bas_compid()) {
             mavlink_heartbeat_t packet;
             mavlink_msg_heartbeat_decode(&msg, &packet);
-            gcs().set_bas_status(packet.system_status);
+            gcs().set_bas_status(AP_HAL::millis(), packet.system_status);
         }
     }
 }

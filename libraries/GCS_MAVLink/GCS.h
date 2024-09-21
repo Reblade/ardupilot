@@ -1133,11 +1133,15 @@ public:
     uint8_t get_bas_compid() {
         return _bas_compid;
     }
-    void set_bas_status(const uint8_t status) {
+    void set_bas_status(const uint32_t now, const uint8_t status) {
         _bas_status = status;
+        _last_bas_updated = now;
     }
     uint8_t get_bas_status() {
         return _bas_status;
+    }
+    uint32_t get_bas_last_updated() {
+        return _last_bas_updated;
     }
 
     void send_to_active_channels(uint32_t msgid, const char *pkt);
@@ -1272,6 +1276,7 @@ private:
     // Component status of our bas
     uint8_t _bas_compid;
     uint8_t _bas_status;
+    uint32_t _last_bas_updated;
 
     void service_statustext(void);
 #if HAL_MEM_CLASS <= HAL_MEM_CLASS_192 || CONFIG_HAL_BOARD == HAL_BOARD_SITL

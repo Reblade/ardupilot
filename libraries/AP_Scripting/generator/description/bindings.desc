@@ -229,6 +229,7 @@ singleton GCS method frame_type MAV_TYPE'enum
 singleton GCS method get_hud_throttle int16_t
 singleton GCS method set_bas_compid void uint8_t'skip_check
 singleton GCS method get_bas_status uint8_t
+singleton GCS method get_bas_last_updated uint32_t
 singleton GCS method send_arm_disarm void uint8_t'skip_check float'skip_check
 
 singleton GCS depends HAL_HIGH_LATENCY2_ENABLED == 1
