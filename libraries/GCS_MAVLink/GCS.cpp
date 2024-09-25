@@ -128,7 +128,7 @@ void GCS::send_arm_disarm(const uint8_t compid, const float arm_value)
     mavlink_command_long_t packet {};
     packet.target_system = sysid_this_mav();
     packet.target_component = compid;
-    packet.command = MAVLINK_MSG_ID_COMMAND_LONG;
+    packet.command = MAV_CMD_COMPONENT_ARM_DISARM;
     packet.param1 = arm_value;
 
     gcs().send_to_active_channels(MAVLINK_MSG_ID_COMMAND_LONG,
