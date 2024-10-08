@@ -3770,12 +3770,12 @@ void GCS_MAVLINK::handle_heartbeat(const mavlink_message_t &msg) const
     if (msg.sysid == sysid_my_gcs()) {
         gcs().sysid_myggcs_seen(AP_HAL::millis());
 
-        // If this heartbeat comes from the BAS, store its system status.
-        if (msg.compid == gcs().get_bas_compid()) {
-            mavlink_heartbeat_t packet;
-            mavlink_msg_heartbeat_decode(&msg, &packet);
-            gcs().set_bas_status(AP_HAL::millis(), packet.system_status);
-        }
+    }
+    // If this heartbeat comes from the BAS, store its system status.
+    if (msg.sysid == gcs().sysid_this_mav() && msg.compid == gcs().get_bas_compid()) {
+        mavlink_heartbeat_t packet;
+        mavlink_msg_heartbeat_decode(&msg, &packet);
+        gcs().set_bas_status(AP_HAL::millis(), packet.system_status);
     }
 }
 
